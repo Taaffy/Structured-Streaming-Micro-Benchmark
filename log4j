@@ -1,0 +1,119 @@
+#
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+# Set everything to be logged to the console
+#log4j.rootLogger=WARN, console, MILK
+#log4j.rootCategory=INFO, console
+#log4j.logger.shells=WARN, console, MILK
+
+
+
+######################################################
+
+log4j.rootLogger=WARN, MyConsole
+log4j.rootCategory=WARN, MyConsole
+log4j.appender.MyConsole=org.apache.log4j.ConsoleAppender
+log4j.appender.MyConsole.target=System.err
+log4j.appender.MyConsole.layout=org.apache.log4j.PatternLayout
+log4j.appender.MyConsole.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n
+
+#log4j.logger.org.apache.spark.write=INFO,FILES 
+#log4j.additivity.=false
+#log4j.appender.FILES=org.apache.log4j.FileAppender 
+#log4j.appender.FILES.File=/tmp/sparklog/spark.log
+#log4j.appender.FILES.Append=false
+#log4j.appender.FILES.layout=org.apache.log4j.PatternLayout 
+#log4j.appender.FILES.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n 
+
+
+log4j.logger.org.apache.spark=INFO,FIVE,SIXTEEN,MILK,FILES
+log4j.additivity.org.apache.spark=false
+
+log4j.appender.FIVE=org.apache.log4j.FileAppender
+log4j.appender.FIVE.File=/tmp/sparklog/queries05.csv
+log4j.appender.FIVE.Append=false
+log4j.appender.FIVE.layout=org.apache.log4j.PatternLayout
+log4j.appender.FIVE.layout.ConversionPattern=%d{HH:MM:SS}{GMT+1} %p %c{1}: %m%n
+log4j.appender.FIVE.filter.1=org.apache.log4j.varia.StringMatchFilter
+log4j.appender.FIVE.filter.1.StringToMatch="+++05+++"
+log4j.appender.FIVE.filter.1.AcceptOnMatch=true
+log4j.appender.FIVE.filter.2=org.apache.log4j.varia.DenyAllFilter
+
+log4j.appender.SIXTEEN=org.apache.log4j.FileAppender
+log4j.appender.SIXTEEN.File=/tmp/sparklog/queries16.csv
+log4j.appender.SIXTEEN.Append=false
+log4j.appender.SIXTEEN.layout=org.apache.log4j.PatternLayout
+log4j.appender.SIXTEEN.layout.ConversionPattern=%d{HH:MM:SS}{GMT+1} %p %c{1}: %m%n
+log4j.appender.SIXTEEN.filter.1=org.apache.log4j.varia.StringMatchFilter
+log4j.appender.SIXTEEN.filter.1.StringToMatch="+++16+++"
+log4j.appender.SIXTEEN.filter.1.AcceptOnMatch=true
+log4j.appender.SIXTEEN.filter.2=org.apache.log4j.varia.DenyAllFilter
+
+log4j.appender.MILK=org.apache.log4j.FileAppender
+log4j.appender.MILK.File=/tmp/sparklog/queriesMilk.csv
+log4j.appender.MILK.Append=false
+log4j.appender.MILK.layout=org.apache.log4j.PatternLayout
+log4j.appender.MILK.layout.ConversionPattern=%d{HH:MM:SS}{GMT+1} %p %c{1}: %m%n
+log4j.appender.MILK.filter.1=org.apache.log4j.varia.StringMatchFilter
+log4j.appender.MILK.filter.1.StringToMatch="+++milk+++"
+log4j.appender.MILK.filter.1.AcceptOnMatch=true
+log4j.appender.MILK.filter.2=org.apache.log4j.varia.DenyAllFilter
+#log4j.additivity.queries=false
+
+#log4j.logger.org.apache.spark.write=INFO,FILES 
+#log4j.additivity.org.apache.spark.write=false
+log4j.appender.FILES=org.apache.log4j.FileAppender 
+log4j.appender.FILES.File=/tmp/sparklog/spark.log
+log4j.appender.FILES.Append=false
+log4j.appender.FILES.layout=org.apache.log4j.PatternLayout 
+log4j.appender.FILES.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n 
+
+
+
+
+
+
+
+  
+
+# Set the default spark-shell log level to WARN. When running the spark-shell, the
+# log level for this class is used to overwrite the root logger's log level, so that
+# the user can have different defaults for the shell and regular Spark apps.
+#log4j.logger.org.apache.spark.repl.Main=INFO
+
+# Settings to quiet third party logs that are too verbose
+#log4j.logger.org.spark_project.jetty=WARN
+#log4j.logger.org.spark_project.jetty.util.component.AbstractLifeCycle=ERROR
+#log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
+#log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
+#log4j.logger.org.apache.parquet=ERROR
+#log4j.logger.parquet=ERROR
+
+# SPARK-9183: Settings to avoid annoying messages when looking up nonexistent UDFs in SparkSQL with Hive support
+#log4j.logger.org.apache.hadoop.hive.metastore.RetryingHMSHandler=FATAL
+#log4j.logger.org.apache.hadoop.hive.ql.exec.FunctionRegistry=ERROR
+
+#log4j.rootLogger=WARN, FILE 
+#log4j.rootCategory=WARN, FILE
+#log4j.appender.FILE=org.apache.log4j.FileAppender 
+#log4j.appender.FILE.File=/tmp/sparklog/spark.csv
+#log4j.appender.FILE.layout=org.apache.log4j.PatternLayout 
+#log4j.appender.FILE.layout.ConversionPattern=%d{yy/MM/dd HH:mm:ss} %p %c{1}: %m%n 
+#log4j.logger.org.spark-project.jetty=WARN 
+#log4j.logger.org.spark-project.jetty.util.component.AbstractLifeCycle=ERROR 
+#log4j.logger.org.apache.spark.repl.SparkIMain$exprTyper=INFO
+#log4j.logger.org.apache.spark.repl.SparkILoop$SparkILoopInterpreter=INFO
